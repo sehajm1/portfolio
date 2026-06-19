@@ -1,0 +1,232 @@
+.page {
+  min-height: 100vh;
+  background: #000;
+  color: #d4d4d4;
+}
+
+.header {
+  border-bottom: 1px solid #1a1a1a;
+  padding: 64px 0 56px;
+}
+
+.headerInner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.intro { display: flex; flex-direction: column; gap: 12px; }
+
+.name {
+  font-size: 36px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.role {
+  font-size: 16px;
+  color: #fe2c55;
+  font-weight: 600;
+}
+
+.bio {
+  font-size: 15px;
+  color: #777;
+  line-height: 1.65;
+  max-width: 560px;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  margin-top: 4px;
+}
+
+.link {
+  font-size: 14px;
+  color: #aaa;
+  text-decoration: none;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.link:hover { color: #fff; border-color: #fff; }
+
+.main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.section { display: flex; flex-direction: column; gap: 24px; }
+
+.sectionTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Projects */
+.projectGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.projectCard {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+  background: #0a0a0a;
+  transition: background 0.15s;
+  position: relative;
+}
+.projectCard:hover { background: #111; }
+
+.projectAccent {
+  width: 3px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.projectBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 22px 22px 20px;
+  flex: 1;
+}
+
+.projectName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.projectTech {
+  font-size: 12px;
+  color: #555;
+  font-family: ui-monospace, monospace;
+}
+
+.projectDesc {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.6;
+}
+
+.tagRow { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag {
+  font-size: 11px;
+  background: #1a1a1a;
+  color: #666;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* Posts */
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.postItem {
+  background: #0a0a0a;
+  padding: 18px 20px;
+  transition: background 0.15s;
+}
+.postItem:hover { background: #111; }
+
+.postBody { display: flex; flex-direction: column; gap: 8px; }
+
+.postTitle {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.postMeta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.platform {
+  font-size: 11px;
+  color: #fe2c55;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Experience */
+.expCard {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.expHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.expRole { font-size: 16px; font-weight: 700; color: #fff; }
+.expDate { font-size: 12px; color: #555; }
+.expOrg  { font-size: 13px; color: #fe2c55; font-weight: 600; }
+
+.expPoints {
+  margin-top: 8px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.expPoints li {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #1a1a1a;
+  padding: 24px 28px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #444;
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer a { color: #444; text-decoration: none; }
+.footer a:hover { color: #888; }
+
+@media (max-width: 600px) {
+  .name { font-size: 28px; }
+  .links { flex-wrap: wrap; gap: 14px; }
+  .main { padding: 40px 20px; gap: 48px; }
+}
