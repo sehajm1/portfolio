@@ -1,3 +1,6 @@
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import BlogPost from './pages/BlogPost';
+import { POSTS } from './posts';
 import styles from './App.module.css';
 
 const PROJECTS = [
@@ -27,42 +30,26 @@ const PROJECTS = [
   },
 ];
 
-const POSTS = [
-  {
-    title: 'Why Your Live Chat UI Breaks at 1000 Messages Per Second (And How to Fix It)',
-    platform: 'dev.to',
-    tags: ['React', 'Performance', 'WebSocket'],
-  },
-  {
-    title: 'Building a Cross-Platform LIVE Dashboard With Vue 3 + Tauri: One Codebase, Three Targets',
-    platform: 'Hashnode',
-    tags: ['Vue 3', 'Tauri', 'Multi-end'],
-  },
-  {
-    title: 'I Built an AI System That Automates Post-Incident Reviews at Enterprise Scale',
-    platform: 'Hashnode',
-    tags: ['Architecture', 'AI', 'Systems'],
-  },
-  {
-    title: 'Frontend Performance Budgets: The Engineering Culture Practice That LIVE Platforms Cannot Skip',
-    platform: 'dev.to',
-    tags: ['Performance', 'CI', 'Frontend'],
-  },
-  {
-    title: 'What Multi-Agent Systems Taught Me About React Component Design',
-    platform: 'Hashnode',
-    tags: ['React', 'Architecture', 'Systems'],
-  },
-];
+function Nav() {
+  const { pathname } = useLocation();
+  return (
+    <nav className={styles.nav}>
+      <Link to="/" className={styles.navBrand}>Sage Maggo</Link>
+      <div className={styles.navLinks}>
+        <Link to="/" className={`${styles.navLink} ${pathname === '/' ? styles.navLinkActive : ''}`}>Work</Link>
+        <Link to="/blog" className={`${styles.navLink} ${pathname.startsWith('/blog') ? styles.navLinkActive : ''}`}>Writing</Link>
+      </div>
+    </nav>
+  );
+}
 
-export default function App() {
+function Home() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <div className={styles.intro}>
-            <h1 className={styles.name}>Sage Maggo</h1>
-            <p className={styles.role}>Frontend Engineer</p>
+            <h1 className={styles.name}>Frontend Engineer</h1>
             <p className={styles.bio}>
               Final-year student at the University of Sydney, Data Science and Business Information Systems.
               Software Engineering Intern at Apple IS&T. Building real-time LIVE interfaces, cross-platform tooling, and open-source performance infrastructure.
@@ -106,10 +93,10 @@ export default function App() {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Writing</h2>
+          <h2 className={styles.sectionTitle}>Recent Writing</h2>
           <div className={styles.postList}>
-            {POSTS.map((post) => (
-              <div key={post.title} className={styles.postItem}>
+            {POSTS.slice(0, 3).map((post) => (
+              <Link key={post.slug} to={`/blog/${post.slug}`} className={styles.postItem}>
                 <div className={styles.postBody}>
                   <span className={styles.postTitle}>{post.title}</span>
                   <div className={styles.postMeta}>
@@ -119,9 +106,10 @@ export default function App() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
+          <Link to="/blog" className={styles.allPosts}>All posts</Link>
         </section>
 
         <section className={styles.section}>
@@ -133,7 +121,7 @@ export default function App() {
             </div>
             <span className={styles.expOrg}>Apple IS&T, Sydney</span>
             <ul className={styles.expPoints}>
-              <li>Built Project Harbour: multi-agent AI orchestration system automating post-incident reviews for 9,600+ P0/P1C incidents. Parallel fan-out sub-agent registry (HCL, Splunk, Radar, WebEx) replaces sequential aggregation with concurrent processing.</li>
+              <li>Built Project Harbour: multi-agent AI orchestration system automating post-incident reviews for 9,600+ P0/P1C incidents. Parallel fan-out sub-agent registry replaces sequential aggregation with concurrent processing.</li>
               <li>Shipped IVA Evaluation Portal: blind A/B comparison interface for RAG 2.0 vs RAG 1.0 assessment, merged to production monorepo.</li>
               <li>Managed alignment across 15+ stakeholders in Problem Management, MIM Operations, Helpline, and AIDP leadership across Sydney and Singapore.</li>
             </ul>
@@ -146,5 +134,49 @@ export default function App() {
         <a href="https://github.com/sehajm1" target="_blank" rel="noreferrer">github.com/sehajm1</a>
       </footer>
     </div>
+  );
+}
+
+function BlogIndex() {
+  return (
+    <div className={styles.page}>
+      <main className={styles.main}>
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>All Writing</h2>
+          <div className={styles.postList}>
+            {POSTS.map((post) => (
+              <Link key={post.slug} to={`/blog/${post.slug}`} className={styles.postItem}>
+                <div className={styles.postBody}>
+                  <span className={styles.postTitle}>{post.title}</span>
+                  <div className={styles.postMeta}>
+                    <span className={styles.platform}>{post.platform}</span>
+                    <span className={styles.postDate}>
+                      {new Date(post.date).toLocaleDateString('en-AU', { year: 'numeric', month: 'short' })}
+                    </span>
+                    {post.tags.map((t) => (
+                      <span key={t} className={styles.tag}>{t}</span>
+                    ))}
+                  </div>
+                  <p className={styles.postDescription}>{post.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<BlogIndex />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

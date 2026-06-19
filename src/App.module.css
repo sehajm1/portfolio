@@ -1,3 +1,37 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 52px;
+  border-bottom: 1px solid #1a1a1a;
+  background: #000;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navBrand {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.3px;
+}
+
+.navLinks { display: flex; gap: 4px; }
+
+.navLink {
+  font-size: 13px;
+  color: #555;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+.navLink:hover { color: #fff; background: rgba(255,255,255,0.05); }
+.navLinkActive { color: #fff; background: rgba(255,255,255,0.07); }
+
 .page {
   min-height: 100vh;
   background: #000;
@@ -150,6 +184,9 @@
   background: #0a0a0a;
   padding: 18px 20px;
   transition: background 0.15s;
+  text-decoration: none;
+  display: block;
+  color: inherit;
 }
 .postItem:hover { background: #111; }
 
@@ -171,6 +208,25 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
+
+.postDate { font-size: 11px; color: #444; }
+
+.postDescription {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.55;
+}
+
+.allPosts {
+  font-size: 13px;
+  color: #555;
+  text-decoration: none;
+  border-bottom: 1px solid #222;
+  padding-bottom: 1px;
+  width: fit-content;
+  transition: color 0.15s, border-color 0.15s;
+}
+.allPosts:hover { color: #aaa; border-color: #555; }
 
 /* Experience */
 .expCard {
